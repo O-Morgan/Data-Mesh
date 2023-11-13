@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd /workspace
+
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common -y
 
 wget -O- https://apt.releases.hashicorp.com/gpg | \
@@ -15,8 +17,11 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
 https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
 sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-sudo apt update -y
+sudo apt update 
 
-sudo apt-get install terraform
+sudo apt-get install terraform -y
 
 echo "Terraform CLI installed successfully."
+
+# here we cd back to the project root once the bash scripts been run
+cd $PROJECT_ROOT
